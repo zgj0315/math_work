@@ -2,6 +2,7 @@ use chrono::prelude::*;
 use math_work::{make_formula, Symbol};
 use std::{fs, io::Write};
 fn main() {
+    fs::create_dir_all("./data").unwrap();
     let local: DateTime<Local> = Local::now();
     let file_path_formula = format!(
         "./data/formula_{}{:02}{:02}.csv",
