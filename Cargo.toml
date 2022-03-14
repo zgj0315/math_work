@@ -1,0 +1,8 @@
+[package]
+edition = "2021"
+name = "math_work"
+version = "0.1.0"
+
+[dependencies]
+chrono = "0.4"
+rand = "0.8"
