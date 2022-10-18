@@ -1,19 +1,21 @@
 use chrono::prelude::*;
+use clap::{arg, command};
 use math_work::{Difficulty, Formula, Symbol};
-use std::{env, fs, io::Write, process};
+use std::{env, fs, io::Write};
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let matchs = command!()
+        .arg(arg!(-l --level <VALUE>"The level to math").required(true))
+        .get_matches();
     let mut difficulty = Difficulty::Normal;
-    if args.len() == 2 {
-        if &args[1] == "easy" {
+    if let Some(level) = matchs.get_one::<String>("level") {
+        println!("level: {}", &level);
+        if level == "easy" {
             difficulty = Difficulty::Easy;
-        } else if &args[1] == "hard" {
+        } else if level == "hard" {
             difficulty = Difficulty::Hard;
-        } else {
-            println!("args error, please input {} [easy|hard]", args[0]);
-            process::exit(1);
         }
     }
+
     fs::create_dir_all("./data").unwrap();
     let local: DateTime<Local> = Local::now();
     let file_path_formula = format!(

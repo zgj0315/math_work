@@ -1,8 +1,10 @@
 [package]
+author = "Zhao Guangjian"
 edition = "2021"
 name = "math_work"
-version = "0.1.0"
+version = "0.2.0"
 
 [dependencies]
 chrono = "0.4"
+clap = {version = "*", features = ["derive", "cargo"]}
 rand = "0.8"
